@@ -21,6 +21,14 @@ module.exports = {
 
         res.status(200).send(randomFortune);
     },
+    getExcuse: (req, res) => {
+        const excuses = ["I tried to follow along to the video, but kept getting an axios bug I couldn't pin down.", "I'm tired and need to submit a passing test.", "Back end stuff is really hard. I'll practice though."];
+
+        let randomIndex = Math.floor(Math.random() * excuses.length);
+        let randomExcuse = excuses[randomIndex];
+
+        res.status(200).send(randomExcuse);
+    },
     submitPerson: (req, res) => {
         console.log('heyo')
         console.log(req.body);
@@ -36,5 +44,23 @@ module.exports = {
         database.push(newObj)
 
         res.status(200).send(database)
+    },
+    deletePerson: (req, res) => {
+        const name = req.query.name
+
+        let matchingPersonIndex
+        for (let i = 0; i < database.length; i++) {
+            if (database[i].name === name) {
+                matchingPersonIndex = i
+                database.splice(i, 1)
+                break;
+            }        
+        }
+
+        if (matchingPersonIndex === undefined) {
+            res.status(200).send(database)
+        } else {
+            res.status(400).send('Person with name ' + name + ' does not exist and could not be deleted.')
+        }
     }
 }

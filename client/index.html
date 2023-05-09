@@ -6,13 +6,19 @@
   <body class="container">
     <button id="complimentButton">Get a compliment</button>
     <button id="fortuneButton">Get a fortune</button>
-
+    <button id="excuseButton">Get an excuse</button>
     <form id="post-form" action="">
       <label for="post-name">Name:</label>
       <input id="post-name">
       <label for="post-power">Power:</label>
       <input id="post-power">
       <button>Submit</button>
+    </form>
+    <form id="delete-form">
+      <h4>Enter name to delete person from database</h4>
+      <label for="delete-name">Name:</label>
+      <input type="input" id="delete-name">
+      <button>Delete!</button>
     </form>
     <div id="data-shown-here"></div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
